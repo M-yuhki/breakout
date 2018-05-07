@@ -409,36 +409,36 @@ class Stage:
     def Read(self):
         """ステージ読み込み"""
         if self.select == 1:
-            stage = open("data/border.csv", "rb")
+            stage = open("data/border.csv", "r")
             return csv.reader(stage)
 
         elif self.select == 2:
-            stage = open("data/stripe.csv", "rb")
+            stage = open("data/stripe.csv", "r")
             return csv.reader(stage)
 
         elif self.select == 3:
-            stage = open("data/check.csv", "rb")
+            stage = open("data/check.csv", "r")
             return csv.reader(stage)
 
         elif self.select == 4:
-            stage = open("data/heart.csv", "rb")
+            stage = open("data/heart.csv", "r")
             return csv.reader(stage)
 
         elif self.select == 5:
-            stage = open("data/square.csv", "rb")
+            stage = open("data/square.csv", "r")
             return csv.reader(stage)
 
         elif self.select == 6:
-            stage = open("data/spiral.csv", "rb")
+            stage = open("data/spiral.csv", "r")
             return csv.reader(stage)
 
         else:
-            stage = open("data/normal.csv", "rb")
+            stage = open("data/normal.csv", "r")
             return csv.reader(stage)
 
     def make_stage(self):
         dataReader = self.Read()
-
+        
         # データに基づいたブロックの生成
         line_y = 1
         for row in dataReader:
