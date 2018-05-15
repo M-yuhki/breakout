@@ -672,11 +672,11 @@ class Ball(pygame.sprite.Sprite):
             self.count[1] = 0  # カウント数の初期化
             self.through = 0  # 貫通フラグの初期化
             # 残り30%の時点でレベル(スピード)UP
-            if self.count[0] >= int(self.clear*0.7) \
-               and self.levflg == 0:
-                self.speed = 7
-                self.levflg = 1
-                self.levelup_sound.play()
+            # if self.count[0] >= int(self.clear*0.7) \
+            #   and self.levflg == 0:
+            #    self.speed = 7
+            #    self.levflg = 1
+            #    self.levelup_sound.play()
             # パドルの左端に当たったとき135度方向、右端で45度方向とし、
             # その間は線形補間で反射方向を計算
             x1 = self.paddle_left.rect.left - self.rect.width  # ボールが当たる左端
@@ -696,11 +696,11 @@ class Ball(pygame.sprite.Sprite):
             self.count[1] = 0  # カウント数の初期化
             self.through = 0  # 貫通フラグの初期化
             # 残り30%の時点でレベル(スピード)UP
-            if self.count[0] >= int(self.clear*0.7) \
-               and self.levflg == 0:
-                self.speed = 7
-                self.levflg = 1
-                self.levelup_sound.play()
+            # if self.count[0] >= int(self.clear*0.7) \
+            #   and self.levflg == 0:
+            #    self.speed = 7
+            #    self.levflg = 1
+            #    self.levelup_sound.play()
             # パドルの左端に当たったとき135度方向、右端で45度方向とし、
             # その間は線形補間で反射方向を計算
             # ボールが当たる左端
