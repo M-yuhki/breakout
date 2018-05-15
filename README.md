@@ -7,13 +7,14 @@
 │ ├─ ~.png ゲーム中で描画するアイテムのデータ  
 │ ├─ ~.wav ゲーム中で鳴らすサウンドデータ  
 │ └─ ~.csv ステージデータ   
-└─ ranking.txt ゲームの記録を保存しておくtxtファイル  
+└─ ranking.txt ゲームの記録を保存しておくtxtファイル（準備中）  
 
 # 実行方法  
 ※実行にはpygameなど幾つかのモジュールの導入が必要です  
  別途導入をお願いします  
-`$python pygame.py`  
-上記の通り実行することでウィンドウが設定され、TOP画面が表示されます  
+`python pygame.py`  
+上記の通り実行することでウィンドウが設定され、以下のようなTOP画面が表示されます  
+![TOP画面](https://github.com/M-yuhki/breakout/blob/image/game_home.png)
 
 ## start
 ゲームを開始するボタンです  
