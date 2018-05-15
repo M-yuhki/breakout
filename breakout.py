@@ -57,7 +57,7 @@ class MyScreen:
         # フルスクリーンにするかどうかのフラグ
         self.fullscreen_flag = False
 
-        # 1 周目のループか確認するためのフラグ(名前入力用)
+        # 1 周目のループか確認するためのフラグ
         self.init_flag = True
 
         # スプライトグループを作成して登録
@@ -114,8 +114,8 @@ class MyScreen:
             title = title_font.render("BREAKOUT", True, (255, 0, 0))
             screen.blit(title, ((W-title.get_width())/2, H/2-160))
 
-            # PUSH SPACE を描画
-            push_space = push_font.render("Push Space Key To Start",
+            # PUSH START を描画
+            push_space = push_font.render("Push START Button To Start",
                                           True, (255, 255, 255))
             screen.blit(push_space,
                         ((W-push_space.get_width())/2, H/2+120))
@@ -127,7 +127,7 @@ class MyScreen:
             self.option_btn.draw(screen)
 
             # ランキングボタンを描画
-            self.rank_btn.draw(screen)
+            # self.rank_btn.draw(screen)
 
         elif self.game_state == PLAY:  # ゲームプレイ画面
             self.all.draw(screen)
@@ -168,16 +168,16 @@ class MyScreen:
             self.stage_btn.draw(screen)
 
             # タイトルを描画
-            stage_moji = push_font.render("PLAYER SELECT", True,
-                                          (255, 255, 255))
-            screen.blit(stage_moji, ((W-stage_moji.get_width())/2, H/2))
+            # stage_moji = push_font.render("PLAYER SELECT", True,
+            #                              (255, 255, 255))
+            # screen.blit(stage_moji, ((W-stage_moji.get_width())/2, H/2))
 
             # 人数選択ボタンを描画
-            if self.paddle2_flag:
-                self.mode_btn.label_change("2")
-            else:
-                self.mode_btn.label_change("1")
-            self.mode_btn.draw(screen)
+            #if self.paddle2_flag:
+            #    self.mode_btn.label_change("2")
+            #else:
+            #    self.mode_btn.label_change("1")
+            #self.mode_btn.draw(screen)
             # return ボタンを描画
             self.return_btn.draw(screen)
 
@@ -193,66 +193,86 @@ class MyScreen:
             # タイトルを描画
             title = title_font.render("GAME CLEAR", True, (255, 0, 0))
             screen.blit(title, ((W-title.get_width())/2, H/2-160))
-            if self.init_flag:
-                self.name = self.input_wnd.ask(screen, "NAME?:")
-                self.list, self.Len, self.Rank = Ranking(self.name,
-                                                         self.score.score, 0)
-                Rank_Write(self.name, self.score.score)
-                self.init_flag = False
-
-            # スコア表示
-            score_moji = push_font.render("NAME:" + self.name +
-                                          "   SCORE:"+str(self.score.score),
+            
+            score_moji = push_font.render(" SCORE:"+str(self.score.score),
                                           True, (255, 255, 255))
             screen.blit(score_moji,
-                        ((W-score_moji.get_width())/2, H/2-160))
+                        ((W-score_moji.get_width())/2, H/2-100))
+            
+            # top画面に戻るボタンを描画
+            self.home_btn.draw(screen)
+            
+            # 以降ランキング機能用
+           
+            #if self.init_flag:
+            #    self.name = self.input_wnd.ask(screen, "NAME?:")
+            #    self.list, self.Len, self.Rank = Ranking(self.name,
+            #                                             self.score.score, 0)
+            #    Rank_Write(self.name, self.score.score)
+            #    self.init_flag = False
 
-            font = pygame.font.Font(None, 25)
-            r_moji = font.render("RANKING", True, (255, 0, 0))
-            screen.blit(r_moji, ((W-r_moji.get_width())/2, H/2-60))
+            # スコア表示
+            # score_moji = push_font.render("NAME:" + self.name +
+            #                              "   SCORE:"+str(self.score.score),
+            #                              True, (255, 255, 255))
+            #screen.blit(score_moji,
+            #            ((W-score_moji.get_width())/2, H/2-160))
+
+            #font = pygame.font.Font(None, 25)
+            #r_moji = font.render("RANKING", True, (255, 0, 0))
+            #screen.blit(r_moji, ((W-r_moji.get_width())/2, H/2-60))
 
             # 上位ランカー表示
-            Rank_Draw(screen, self.list, H/2-50, 0, 5)
+            #Rank_Draw(screen, self.list, H/2-50, 0, 5)
 
             # ランキング表示
-            rank_moji = push_font.render("YOUR RANK:  " + str(self.Rank) +
-                                         " / "+str(self.Len),
-                                         True, (255, 255, 255))
-            screen.blit(rank_moji,
-                        ((W-rank_moji.get_width())/2, H/2+130))
+            #rank_moji = push_font.render("YOUR RANK:  " + str(self.Rank) +
+            #                             " / "+str(self.Len),
+            #                             True, (255, 255, 255))
+            #screen.blit(rank_moji,
+            #            ((W-rank_moji.get_width())/2, H/2+130))
 
         elif self.game_state == GAMEOVER:  # ゲームオーバー画面
             # タイトルを描画
             title = title_font.render("GAME OVER", True, (255, 0, 0))
             screen.blit(title, ((W-title.get_width())/2, H/2-160))
 
-            if self.init_flag:
-                self.name = self.input_wnd.ask(screen, "NAME?:")
-                self.list, self.Len, self.Rank = Ranking(self.name,
-                                                         self.score.score, 0)
-                Rank_Write(self.name, self.score.score)
-                self.init_flag = False
+            # top画面に戻るボタンを描画
+            self.home_btn.draw(screen)
 
-            # スコア表示
-            score_moji = push_font.render("NAME:" + self.name +
-                                          "   SCORE:"+str(self.score.score),
+            score_moji = push_font.render("SCORE:"+str(self.score.score),
                                           True, (255, 255, 255))
             screen.blit(score_moji,
                         ((W-score_moji.get_width())/2, H/2-100))
 
-            font = pygame.font.Font(None, 25)
-            r_moji = font.render("RANKING", True, (255, 0, 0))
-            screen.blit(r_moji, ((W-r_moji.get_width())/2, H/2-60))
+            # 以降ランキング機能用
+            # if self.init_flag:
+            #    self.name = self.input_wnd.ask(screen, "NAME?:")
+            #    self.list, self.Len, self.Rank = Ranking(self.name,
+            #                                             self.score.score, 0)
+            #    Rank_Write(self.name, self.score.score)
+            #    self.init_flag = False
+
+            # スコア表示
+            # score_moji = push_font.render("NAME:" + self.name +
+            #                              "   SCORE:"+str(self.score.score),
+            #                              True, (255, 255, 255))
+            #screen.blit(score_moji,
+            #            ((W-score_moji.get_width())/2, H/2-100))
+
+            #font = pygame.font.Font(None, 25)
+            #r_moji = font.render("RANKING", True, (255, 0, 0))
+            #screen.blit(r_moji, ((W-r_moji.get_width())/2, H/2-60))
 
             # 上位ランカー表示
-            Rank_Draw(screen, self.list, H/2-50, 0, 5)
+            #Rank_Draw(screen, self.list, H/2-50, 0, 5)
 
             # ランキング表示
-            rank_moji = push_font.render("YOUR RANK:  " + str(self.Rank) +
-                                         " / "+str(self.Len),
-                                         True, (255, 255, 255))
-            screen.blit(rank_moji,
-                        ((W-rank_moji.get_width())/2, H/2+130))
+            #rank_moji = push_font.render("YOUR RANK:  " + str(self.Rank) +
+            #                             " / "+str(self.Len),
+            #                             True, (255, 255, 255))
+            #screen.blit(rank_moji,
+            #            ((W-rank_moji.get_width())/2, H/2+130))
 
     def key_handler(self, screen):
         """キーハンドラー"""
@@ -380,6 +400,18 @@ class MyScreen:
                 # ランキング画面の場合
                 elif self.game_state == RANKING:
                     if self.return_btn2.is_hover:
+                        self.game_state = READY
+
+                # クリア画面の場合
+                elif self.game_state == CLEAR:
+                    if self.home_btn.is_hover:
+                        self.init_game(screen)
+                        self.game_state = READY
+                
+                # ゲームオーバー画面の場合
+                elif self.game_state == GAMEOVER:
+                    if self.home_btn.is_hover:
+                        self.init_game(screen)
                         self.game_state = READY
 
             # クリックしたとき
